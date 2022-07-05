@@ -9,18 +9,60 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-         ZStack{
-                    Text("Hello, world!").foregroundColor(Color.orange)
-            
-        RoundedRectangle(cornerRadius: 25)
-                        .stroke(lineWidth: 3)
-                        .foregroundColor(.red)
-        }.padding(.horizontal)
+        VStack{
+            CardView()
+            CardView()
+            CardView()
+            CardView()
+        }.padding(.vertical).foregroundColor(.red)
     }
 }
 
+struct CardView: View{
+ @State  var isFaceUp:Bool = true
+    var body: some View{
+        ZStack{
+            let shape = RoundedRectangle(cornerRadius: 20)
+        
+        if isFaceUp{
+        shape.fill().foregroundColor(.white)
+            
+        shape.stroke(lineWidth: 3).foregroundColor(.red)
+        Text("✈️").fontWeight(.heavy).foregroundColor(Color.orange)
+
+            }else{
+                shape.fill().foregroundColor(.red)
+            }
+        }.onTapGesture {
+            isFaceUp = !isFaceUp
+        }
+}
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//this is not view part discussed latter
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .preferredColorScheme(.dark)
+        ContentView()
+            .preferredColorScheme(.light)
     }
 }
